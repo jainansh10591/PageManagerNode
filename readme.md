@@ -1,37 +1,99 @@
-# Node Cellar Sample Application with Backbone.js, Twitter Bootstrap, Node.js, Express, and MongoDB #
+# Page Manager #
 
-"Node Cellar" is a sample CRUD application built with with Backbone.js, Twitter Bootstrap, Node.js, Express, and MongoDB.
+An application to manage Facebook Pages. Created to demo at Facebook Solution Engineering Onsite Interview
 
-The application allows you to browse through a list of wines, as well as add, update, and delete wines.
+# api to post to page
+FB.api(
+  '/page_id/feed',
+  'POST',
+  {"access_token":"","message":""},
+  function(response) {
+      // Insert your code here
+  }
+);
 
-This application is further documented [here](http://coenraets.org/blog).
+# api to get all posts of page
+FB.api(
+  '/page_id/feed',
+  'GET',
+  {},
+  function(response) {
+      // Insert your code here
+  }
+);
 
-The application is also hosted online. You can test it [here](http://nodecellar.coenraets.org).
+# api to get details of a page
+FB.api(
+  '/page_id',
+  'GET',
+  {},
+  function(response) {
+      // Insert your code here
+  }
+);
 
 
-## To run the application on your own Heroku account:##
 
-1. Install the [Heroku Toolbelt](http://toolbelt.heroku.com)
+# api to get all pages owned by user and accesstoken
+FB.api(
+  '/me/accounts',
+  'GET',
+  {"access_token":""},
+  function(response) {
+      // Insert your code here
+  }
+);
 
-2. [Sign up](http://heroku.com/signup) for a Heroku account
+# api to get unique views of pagepost
+FB.api(
+  '/page_post_id/insights/page_posts_impressions_unique',
+  'GET',
+  {},
+  function(response) {
+      // Insert your code here
+  }
+); 
 
-3. Login to Heroku from the `heroku` CLI:
 
-        $ heroku login
+#######################################################
 
-4. Create a new app on Heroku:
+# unpublished post ("published": "0")-- 
+# permission -- manage_pages, publish_pages
+# https://developers.facebook.com/docs/marketing-api/unpublished-page-posts/v2.5
 
-        $ heroku create
+## 5 Types - 
+# Status Post  -- text
+# Photo post  -- text, optional link, photo
+# Link post  -- link , otional text
+		picture - string -- url 
+		thumbnail - file - .jpg,.jpeg,.gif,.png
 
-5. Add the [MongoLab Heroku Add-on](http://addons.heroku.com/mongolab)
+# Video post  -- video, optional text
+# Offer post  -- (only offline offer)
+# For posts, links, or status updates -- use published field.
+# For photos, videos -- use the no_story field.
 
-        $ heroku addons:add mongolab
 
-6. Upload the app to Heroku:
+## use "privacy": {"value":"", "allow":"", "deny":""}
+# https://developers.facebook.com/docs/graph-api/common-scenarios#privacy-param
 
-        $ git push heroku master
 
-7. Open the app in your browser:
+## scheduled post - "scheduled_publish_time" 
+				   "published" set to false
+#https://developers.facebook.com/docs/graph-api/common-scenarios#scheduledposts
 
-        $ heroku open
 
+
+#######################################################
+
+# post on page
+# https://developers.facebook.com/docs/pages/publishing
+
+## text -- "message"
+## link -- "message", "link"
+## photo -- "page_id/photos"
+## video -- "page_id/videos"
+
+#######################################################
+
+# comment on post - "post_id/comments" with "message" and user "access_token"

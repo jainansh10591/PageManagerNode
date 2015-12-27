@@ -22,7 +22,7 @@ app.use(session({
     saveUninitialized: true,
     resave: true
 }));
-app.use(Facebook.middleware({ appId: '485782364935495', secret: '2021d1bb0d505d417e88fd4f82a7f58d' }));
+app.use(Facebook.middleware({ appId: '485782364935495', secret: '2021d1bb0d505d417e88fd4f82a7f58d', scope: 'manage_pages, publish_pages, ads_management' }));
 
 app.use('/', api);
 
